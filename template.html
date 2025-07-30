@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro de Paciente</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+<script>
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            if (dob) {
+                const birthDate = new Date(dob);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('age').value = age;
+            } else {
+                document.getElementById('age').value = '';
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="w-full max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg my-8">
+<form>
+<div class="border-b-2 border-blue-100 pb-4 mb-6">
+<h2 class="text-2xl font-bold text-gray-700">Información del Paciente</h2>
+</div>
+<fieldset class="mb-8">
+<legend class="text-xl font-semibold text-gray-600 mb-4">Identificación del Paciente</legend>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div>
+<label class="block text-sm font-medium text-gray-700" for="dni">DNI <span class="text-red-500">*</span></label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="dni" name="dni" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="first-name">Nombres</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="first-name" name="first-name" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="last-name">Apellidos</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="last-name" name="last-name" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="phone">Celular <span class="text-red-500">*</span></label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="phone" name="phone" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="secondary-phone">Celular secundario</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="secondary-phone" name="secondary-phone" type="tel"/>
+</div>
+<div class="col-span-1 md:col-span-2">
+<label class="block text-sm font-medium text-gray-700" for="address">Dirección</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="address" name="address" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="district">Distrito</label>
+<select class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="district" name="district">
+<option>Seleccione un distrito</option>
+<option>Distrito 1</option>
+<option>Distrito 2</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="marital-status">Estado Civil</label>
+<select class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="marital-status" name="marital-status">
+<option>Soltero/a</option>
+<option>Casado/a</option>
+<option>Divorciado/a</option>
+<option>Viudo/a</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="dob">Fecha de nacimiento</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="dob" name="dob" onchange="calculateAge()" type="date"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="age">Edad</label>
+<input class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-blue-300 rounded-md shadow-sm sm:text-sm" id="age" name="age" readonly="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700">Sexo</label>
+<div class="mt-2 flex items-center space-x-4">
+<label class="inline-flex items-center">
+<input class="form-radio h-4 w-4 text-blue-600 border-blue-300 focus:ring-blue-500" name="gender" type="radio" value="male"/>
+<span class="ml-2 text-sm text-gray-700">Masculino</span>
+</label>
+<label class="inline-flex items-center">
+<input class="form-radio h-4 w-4 text-blue-600 border-blue-300 focus:ring-blue-500" name="gender" type="radio" value="female"/>
+<span class="ml-2 text-sm text-gray-700">Femenino</span>
+</label>
+</div>
+</div>
+</div>
+</fieldset>
+<fieldset class="mb-8">
+<legend class="text-xl font-semibold text-gray-600 mb-4">Información de la Consulta</legend>
+<div class="grid grid-cols-1 gap-6">
+<div>
+<label class="block text-sm font-medium text-gray-700" for="reason">Motivo de consulta</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="reason" name="reason" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700">Enfermedad(es) que padece</label>
+<div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Asma</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Diabetes</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Cardiopatía</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Hepatitis</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Hemorragia</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Anemia</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Epilepsia</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Hipoacusia</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Tuberculosis</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Herpes</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Cirugía</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Accidentes</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Enfermedad ósea</span></label>
+<label class="inline-flex items-center"><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/><span class="ml-2 text-gray-700">Trastorno emocional</span></label>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="notes">Notas / Comentarios adicionales</label>
+<textarea class="mt-1 block w-full px-3 py-2 bg-white border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="notes" name="notes" rows="4"></textarea>
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend class="text-xl font-semibold text-gray-600 mb-4">Historial Médico</legend>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4">
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Tiene alergias?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Ronca al dormir?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Se resfría con frecuencia?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Sufre de amigdalitis?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Tiene dificultad para masticar?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Se chupa el dedo/labio?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+<label class="inline-flex items-center justify-between"><span class="text-gray-700">¿Ha recibido tratamiento de ortodoncia previo?</span> <div><input class="form-checkbox h-5 w-5 text-blue-600 rounded border-blue-300 focus:ring-blue-500" type="checkbox"/></div></label>
+</div>
+</fieldset>
+<div class="mt-8 pt-5 border-t border-gray-200 flex justify-end space-x-4">
+<button class="py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="reset">
+                    Limpiar Formulario
+                </button>
+<button class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="submit">
+                    Enviar
+                </button>
+</div>
+</form>
+</div>
+
+</body></html>

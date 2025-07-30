@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Paciente</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    function calculateAge() {
+      const dob = document.getElementById('dob').value;
+      if (dob) {
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        document.getElementById('age').value = age;
+      } else {
+        document.getElementById('age').value = '';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <form>
+      <div class="section-title">
+        <h2>Información del Paciente</h2>
+      </div>
+
+      <fieldset class="fieldset">
+        <legend>Identificación del Paciente</legend>
+        <div class="grid-container">
+          <div class="form-group">
+            <label for="dni">DNI <span class="required">*</span></label>
+            <input id="dni" name="dni" type="text" required>
+          </div>
+          <div class="form-group span-2">
+            <label for="first-name">Nombres</label>
+            <input id="first-name" name="first-name" type="text">
+          </div>
+          <div class="form-group span-2">
+            <label for="last-name">Apellidos</label>
+            <input id="last-name" name="last-name" type="text">
+          </div>
+          <div class="form-group">
+            <label for="phone">Celular <span class="required">*</span></label>
+            <input id="phone" name="phone" type="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="secondary-phone">Celular secundario</label>
+            <input id="secondary-phone" name="secondary-phone" type="tel">
+          </div>
+          <div class="form-group">
+            <label for="dob">Fecha de nacimiento</label>
+            <input id="dob" name="dob" type="date" onchange="calculateAge()">
+          </div>
+          <div class="form-group">
+            <label for="district">Distrito</label>
+            <select id="district" name="district">
+              <option>Seleccione un distrito</option>
+              <option>Chicama</option>
+              <option>Paiján</option>
+              <option>Chocope</option>
+              <option>Casagrande</option>
+              <option>Rázuri</option>
+              <option>Ascope</option>
+              <option>Magdalena de Cao</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="marital-status">Estado Civil</label>
+            <select id="marital-status" name="marital-status">
+              <option>Sin respuesta</option>
+              <option>Soltero/a</option>
+              <option>Casado/a</option>
+              <option>Divorciado/a</option>
+              <option>Viudo/a</option>
+            </select>
+          </div>
+          
+          <div class="form-group span-2">
+            <label for="address">Dirección</label>
+            <input id="address" name="address" type="text">
+          </div>
+          <div class="form-group">
+            <label for="age">Edad</label>
+            <input id="age" name="age" type="text" disabled>
+          </div>
+          <div class="form-group span-2">
+            <label>Sexo</label>
+            <div class="radio-group">
+              <label><input type="radio" name="gender" value="male"> Masculino</label>
+              <label><input type="radio" name="gender" value="female"> Femenino</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend>Alergias y Enfermedades</legend>
+        <div class="grid-container">
+          <div class="form-group full-width">
+            <label for="allergies">Alergias</label>
+            <textarea id="allergies" name="allergies" rows="3" placeholder="Describa si el paciente tiene alguna alergia conocida..."></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label for="diseases">Enfermedades</label>
+            <textarea id="diseases" name="diseases" rows="3" placeholder="Describa si el paciente tiene alguna enfermedad previa..."></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend>Hábitos y Apoderado</legend>
+        <div class="grid-container">
+          <div class="form-group full-width">
+            <label>Hábitos</label>
+            <label><input type="checkbox" name="habitos" value="chupadedo"> Se chupa el dedo</label><br>
+            <label><input type="checkbox" name="habitos" value="bruxismo"> Rechina los dientes</label>
+          </div>
+          <div class="form-group">
+            <label for="minor">¿Es menor de edad?</label>
+            <select id="minor" name="minor">
+              <option value="no">No</option>
+              <option value="si">Sí</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="apoderado">Datos del Apoderado (si aplica)</label>
+            <textarea id="apoderado" name="apoderado" rows="3" placeholder="Nombre completo, DNI, relación, teléfono..."></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label for="comentarios">Comentarios adicionales</label>
+            <textarea id="comentarios" name="comentarios" rows="3" placeholder="Observaciones u otros datos relevantes..."></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="button-group">
+        <button type="reset" class="btn-outline">Limpiar Formulario</button>
+        <button type="submit" class="btn">Enviar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
